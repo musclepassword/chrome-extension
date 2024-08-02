@@ -1,0 +1,25 @@
+{
+    "translations": {
+        "uppercase": "Uppercase",
+        "lowercase": "Lowercase",
+        "digits": "Digits",
+        "symbols": "Symbols",
+        "password_copied": "Password Copied",
+        "password_length": "Password Length",
+        "generate_password_title": "Strong random password generator",
+        "generate_password_desc": "Generate strong passwords using random password generator",
+        "long": "Long",
+        "complex": "Complex",
+        "unique": "Unique",
+        "What makes a password strong": "What makes a password strong?",
+        "long_desc": "The longer a password, the more secure it is. A strong password should be at least 10 characters long.",
+        "complex_desc": "Strong passwords use a combination of letters, numbers, cases, and symbols to form an unpredictable string of characters that doesn't resemble words or names.",
+        "unique_desc": "A strong password should be unique to each account to reduce vulnerability in the event of a hack.",
+        "contact_for_support": "Contact for support !",
+        "contact_description": "I am developing the project, I am open to your ideas.",
+        "google_chrome_extension": "Google Chrome Extension",
+        "google_chrome_extension_desc": "Chrome extension will come soon, my work continues",
+        "copy_password": "Copy Password",
+        "email": "E-Mail"
+    }
+}
