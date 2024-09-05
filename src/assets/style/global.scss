@@ -9,9 +9,6 @@
 html,
 body {
     width: 600px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
 }
 
 a {
@@ -104,7 +101,6 @@ input:focus {
         justify-content: center;
         align-items: center;
         display: flex;
-        width: 800px;
         border: 1px solid #eee;
         margin: 0 auto;
         padding: 0 20px;
