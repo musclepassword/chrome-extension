@@ -8,7 +8,7 @@
 
 html,
 body {
-    width: 600px;
+    width: 450px;
 }
 
 a {
@@ -21,7 +21,7 @@ a {
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 21px;
 }
 
 h2 {
@@ -39,7 +39,7 @@ header {
     justify-content: space-between;
     align-items: center;
     display: flex;
-    padding: 50px 30px;
+    padding: 30px;
 }
 
 .container {
@@ -63,7 +63,7 @@ input:focus {
     .copy-button {
         width: 400px;
         height: 60px;
-        margin: 70px;
+        margin: 30px 0;
     }
 
     .sync-button {
@@ -140,13 +140,13 @@ input:focus {
 
     label {
         user-select: none;
-        font-size: 25px;
+        font-size: 18px;
     }
 
     .char-checkbox {
         justify-content: space-between;
-        display: flex;
+        display: grid;
         align-items: center;
-        margin-top: 70px;
+        margin-top: 30px;
     }
 }
