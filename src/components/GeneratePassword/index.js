@@ -86,7 +86,6 @@ const GeneratePassword = () => {
         <section className="generate-password">
             <div className="container">
                 <h1>{i18n.t('generate_password_title')}</h1>
-                <p>{i18n.t('generate_password_desc')}</p>
                 <div className="input-range">
                     <label>{i18n.t('password_length') + ': '}<b>{length}</b></label>
                     <Slider
@@ -108,12 +107,14 @@ const GeneratePassword = () => {
                     />
                 </div>
                 <div className="input-password">
-                    <Input className="input-text" type="text" variant="borderless" value={password} />
-                    <Tooltip title={<span><CheckCircleOutlined /> {i18n.t('password_copied')}</span>} color="green" trigger="click">
+                    <Tooltip title={<span><CheckCircleOutlined /> {i18n.t('password_copied')}</span>} trigger="click">
+                        <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
+                    </Tooltip>
+                    {/* <Tooltip title={<span><CheckCircleOutlined /> {i18n.t('password_copied')}</span>} color="green" trigger="click">
                         <Button className="button-transparent" type="link" onClick={() => copyClipboard()}>
                             <CopyOutlined style={{ fontSize: 20 }} />
                         </Button>
-                    </Tooltip>
+                    </Tooltip> */}
                     <Button className="sync-button" type="primary" onClick={() => generatePassword()}>
                         <SyncOutlined style={{ fontSize: 20 }} />
                     </Button>
