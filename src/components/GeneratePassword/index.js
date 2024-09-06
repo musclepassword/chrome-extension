@@ -85,7 +85,6 @@ const GeneratePassword = () => {
     return (
         <section className="generate-password">
             <div className="container">
-                <h1>{i18n.t('generate_password_title')}</h1>
                 <div className="input-range">
                     <label>{i18n.t('password_length') + ': '}<b>{length}</b></label>
                     <Slider
@@ -128,7 +127,7 @@ const GeneratePassword = () => {
                                 handleCheckboxChange(item.value, e.target.checked);
                             }}
                         >
-                            {i18n.t(item.name)}
+                            {i18n.t(item.name) + ' (' + item.value + ')'}
                         </Checkbox>
                     ))}
                 </div>
