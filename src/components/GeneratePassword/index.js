@@ -84,59 +84,50 @@ const GeneratePassword = () => {
 
     return (
         <section className="generate-password">
-            <div className="container">
-                <div className="input-range">
-                    <label>{i18n.t('password_length') + ': '}<b>{length}</b></label>
-                    <Slider
-                        defaultValue={value}
-                        onChange={(e) => setValue(e) || generatePassword(e)}
-                        className="slider"
-                        min={3}
-                        max={50}
-                        styles={{
-                            track: {
-                                background: 'transparent',
-                            },
-                            tracks: {
-                                background: `linear-gradient(to left, ${getGradientColor(start)} 0%, ${getGradientColor(
-                                    end,
-                                )} 100%)`,
-                            },
-                        }}
-                    />
-                </div>
-                <div className="input-password">
-                    <Tooltip title={<span><CheckCircleOutlined /> {i18n.t('password_copied')}</span>} trigger="click">
-                        <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
-                    </Tooltip>
-                    {/* <Tooltip title={<span><CheckCircleOutlined /> {i18n.t('password_copied')}</span>} color="green" trigger="click">
-                        <Button className="button-transparent" type="link" onClick={() => copyClipboard()}>
-                            <CopyOutlined style={{ fontSize: 20 }} />
-                        </Button>
-                    </Tooltip> */}
-                    <Button className="sync-button" type="primary" onClick={() => generatePassword()}>
-                        <SyncOutlined style={{ fontSize: 20 }} />
-                    </Button>
-                </div>
-                <div className="char-checkbox">
-                    {checkBoxList.map((item, key) => (
-                        <Checkbox
-                            key={key}
-                            checked={item.default}
-                            onChange={(e) => {
-                                handleCheckboxChange(item.value, e.target.checked);
-                            }}
-                        >
-                            {i18n.t(item.name) + ' (' + item.value + ')'}
-                        </Checkbox>
-                    ))}
-                </div>
+            <div className="input-range">
+                <label>{i18n.t('password_length') + ': '}<b>{length}</b></label>
+                <Slider
+                    defaultValue={value}
+                    onChange={(e) => setValue(e) || generatePassword(e)}
+                    className="slider"
+                    min={3}
+                    max={50}
+                    styles={{
+                        track: {
+                            background: 'transparent',
+                        },
+                        tracks: {
+                            background: `linear-gradient(to left, ${getGradientColor(start)} 0%, ${getGradientColor(
+                                end,
+                            )} 100%)`,
+                        },
+                    }}
+                />
+            </div>
+            <div className="input-password">
+                <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
                 <Tooltip title={<span><CheckCircleOutlined /> {i18n.t('password_copied')}</span>} trigger="click">
-                    <Button type="primary" className="copy-button" onClick={() => copyClipboard()}>
-                        {i18n.t('copy_password')}
+                    <Button className="sync-button" type="primary">
+                        <CopyOutlined onClick={() => copyClipboard()} />
                     </Button>
                 </Tooltip>
             </div>
+            <div className="char-checkbox">
+                {checkBoxList.map((item, key) => (
+                    <Checkbox
+                        key={key}
+                        checked={item.default}
+                        onChange={(e) => {
+                            handleCheckboxChange(item.value, e.target.checked);
+                        }}
+                    >
+                        {i18n.t(item.name) + ' (' + item.value + ')'}
+                    </Checkbox>
+                ))}
+            </div>
+            <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
+                Generate
+            </Button>
         </section>
     );
 }
