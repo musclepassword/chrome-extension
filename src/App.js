@@ -14,7 +14,9 @@ function App() {
         tabPosition="top"
         className="tabs"
         type="card"
-        size="middle"
+        size="large"
+        animated
+        centered
         items={
           [
             {
