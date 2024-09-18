@@ -54,6 +54,8 @@ const GeneratePassword = () => {
             retVal += char.charAt(Math.floor(Math.random() * n));
         }
         setPassword(retVal);
+        let localStoragePassword = localStorage.getItem('password');
+        !localStoragePassword ? localStorage.setItem('password', []) : localStorage.setItem('password', JSON.stringify([retVal, ...JSON.parse(localStoragePassword)]));
     };
 
     const copyClipboard = () => {
