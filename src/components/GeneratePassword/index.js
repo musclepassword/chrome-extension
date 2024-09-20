@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
-import { SyncOutlined, CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from "react-i18next";
+import { create } from 'zustand';
 
 const getGradientColor = (percentage) => {
     const startColor = [135, 208, 104];
@@ -54,7 +55,7 @@ const GeneratePassword = () => {
             retVal += char.charAt(Math.floor(Math.random() * n));
         }
         setPassword(retVal);
-        
+
         let localStorageName = 'password';
         let localStoragePassword = localStorage.getItem(localStorageName);
         !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([retVal, ...JSON.parse(localStoragePassword)]));
