@@ -1,4 +1,4 @@
-import { Space, Table, Tag } from 'antd';
+import { Table } from 'antd';
 import { usePasswordStore } from '../../stores';
 
 const History = () => {
@@ -12,7 +12,7 @@ const History = () => {
       render: (text) => <a>{text}</a>,
     },
   ];
-  
+
   const rowSelection = {
     onChange: (e) => console.log(e),
   };
