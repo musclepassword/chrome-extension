@@ -37,8 +37,7 @@ const GeneratePassword = () => {
     const [value, setValue] = useState([15, 100]);
     const start = value[0] / 100;
     const end = value[value.length - 1] / 100;
-    const passwordState = usePasswordStore((state) => state.password)
-    const updatePassword = usePasswordStore((state) => state.updatePassword)
+    const updatePassword = usePasswordStore((state) => state.updatePassword);
 
     useEffect(() => {
         generatePassword();
@@ -88,8 +87,6 @@ const GeneratePassword = () => {
         });
         setChar(updatedChar);
     };
-
-    console.log(passwordState);
 
     return (
         <section className="generate-password">

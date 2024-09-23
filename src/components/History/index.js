@@ -1,10 +1,10 @@
-const History = () => {
-  let localStorageName = 'password';
-  let localStoragePassword = localStorage.getItem(localStorageName);
+import { usePasswordStore } from '../../stores';
 
-  console.log(localStoragePassword && JSON.parse(localStoragePassword));
+const History = () => {
+  const passwordState = usePasswordStore((state) => state.password)
+
   return (
-    <div>{JSON.parse(localStoragePassword).map(item => <div>{item}</div>)}</div>
+    <div>{passwordState.map(item => <div>{item}</div>)}</div>
   )
 }
 
