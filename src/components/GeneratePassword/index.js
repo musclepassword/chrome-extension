@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
 import { CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from "react-i18next";
-import { create } from 'zustand';
+import { usePasswordStore } from '../../stores';
 
 const getGradientColor = (percentage) => {
     const startColor = [135, 208, 104];
@@ -37,6 +37,8 @@ const GeneratePassword = () => {
     const [value, setValue] = useState([15, 100]);
     const start = value[0] / 100;
     const end = value[value.length - 1] / 100;
+    const passwordState = usePasswordStore((state) => state.password)
+    const updatePassword = usePasswordStore((state) => state.updatePassword)
 
     useEffect(() => {
         generatePassword();
@@ -58,7 +60,7 @@ const GeneratePassword = () => {
 
         let localStorageName = 'password';
         let localStoragePassword = localStorage.getItem(localStorageName);
-        !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([retVal, ...JSON.parse(localStoragePassword)]));
+        !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([retVal, ...JSON.parse(localStoragePassword)])) || updatePassword([retVal, ...JSON.parse(localStoragePassword)]);
     };
 
     const copyClipboard = () => {
@@ -86,6 +88,8 @@ const GeneratePassword = () => {
         });
         setChar(updatedChar);
     };
+
+    console.log(passwordState);
 
     return (
         <section className="generate-password">
