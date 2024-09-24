@@ -3,6 +3,7 @@ import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
 import { CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from "react-i18next";
 import { usePasswordStore } from '../../stores';
+import md5 from 'md5';
 
 const getGradientColor = (percentage) => {
     const startColor = [135, 208, 104];
@@ -59,7 +60,7 @@ const GeneratePassword = () => {
 
         let localStorageName = 'password';
         let localStoragePassword = localStorage.getItem(localStorageName);
-        !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([retVal, ...JSON.parse(localStoragePassword)])) || updatePassword([retVal, ...JSON.parse(localStoragePassword)]);
+        !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([md5(retVal), ...JSON.parse(localStoragePassword)])) || updatePassword([retVal, ...JSON.parse(localStoragePassword)]);
     };
 
     const copyClipboard = () => {
