@@ -18,10 +18,10 @@ const GeneratePassword = () => {
     const [password, setPassword] = useState("");
     const [length, setLength] = useState(15);
     const [checkBoxList, setCheckBoxList] = useState([
-        { name: 'uppercase', value: 'ABC', default: true, character: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' },
-        { name: 'lowercase', value: 'abc', default: true, character: 'abcdefghijklmnopqrstuvwxyz' },
-        { name: 'digits', value: '123', default: true, character: '0123456789' },
-        { name: 'symbols', value: '#$&', default: false, character: '!@#$%^&' },
+        { name: 'Uppercase', value: 'ABC', default: true, character: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' },
+        { name: 'Lowercase', value: 'abc', default: true, character: 'abcdefghijklmnopqrstuvwxyz' },
+        { name: 'Digits', value: '123', default: true, character: '0123456789' },
+        { name: 'Symbols', value: '#$&', default: false, character: '!@#$%^&' },
     ]);
     const [char, setChar] = useState(() => {
         let initialChar = '';
