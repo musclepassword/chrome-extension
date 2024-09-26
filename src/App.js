@@ -1,14 +1,12 @@
 import React from "react";
-import Header from "./components/Header";
 import GeneratePassword from "./components/GeneratePassword";
 import History from "./components/History";
-import { Radio, Tabs } from 'antd';
+import { Tabs } from 'antd';
 import './assets/style/global.scss';
 
 function App() {
   return (
     <>
-      {/* <Header /> */}
       <Tabs
         defaultActiveKey="1"
         tabPosition="top"

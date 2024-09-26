@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
 import { CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
-import { useTranslation } from "react-i18next";
 import { usePasswordStore } from '../../stores';
 
 const getGradientColor = (percentage) => {
@@ -16,7 +15,6 @@ const getGradientColor = (percentage) => {
 }
 
 const GeneratePassword = () => {
-    const { i18n } = useTranslation();
     const [password, setPassword] = useState("");
     const [length, setLength] = useState(15);
     const [checkBoxList, setCheckBoxList] = useState([
@@ -91,7 +89,7 @@ const GeneratePassword = () => {
     return (
         <section className="generate-password">
             <div className="input-range">
-                <label>{i18n.t('password_length') + ': '}<b>{length}</b></label>
+                <label>{'Password Length' + ': '}<b>{length}</b></label>
                 <Slider
                     defaultValue={value}
                     onChange={(e) => setValue(e) || generatePassword(e)}
@@ -112,7 +110,7 @@ const GeneratePassword = () => {
             </div>
             <div className="input-password">
                 <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
-                <Tooltip title={<span><CheckCircleOutlined /> {i18n.t('password_copied')}</span>} trigger="click">
+                <Tooltip title={<span><CheckCircleOutlined />Password Copied</span>} trigger="click">
                     <Button className="sync-button" type="primary">
                         <CopyOutlined onClick={() => copyClipboard()} />
                     </Button>
@@ -127,7 +125,7 @@ const GeneratePassword = () => {
                             handleCheckboxChange(item.value, e.target.checked);
                         }}
                     >
-                        {i18n.t(item.name) + ' (' + item.value + ')'}
+                        {item.name + ' (' + item.value + ')'}
                     </Checkbox>
                 ))}
             </div>
