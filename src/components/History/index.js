@@ -18,7 +18,6 @@ const History = () => {
   };
 
   return (
-    // <div>{passwordState.map(item => <div>{item}</div>)}</div>
     <Table
       size='small'
       rowSelection={rowSelection}
