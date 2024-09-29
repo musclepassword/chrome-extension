@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
-import { CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
-import { usePasswordStore } from '../../stores';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+// import { usePasswordStore } from '../../../stores';
+import CopyOutlined from '@ant-design/icons/CopyOutlined';
+import CheckCircleOutlined from '@ant-design/icons/CheckCircleOutlined';
+
+// Dynamically import Button from Ant Design
+const Button = dynamic(() => import('antd/es/button'), { ssr: false });
+const Input = dynamic(() => import('antd/es/input'), { ssr: false });
+const Checkbox = dynamic(() => import('antd/es/checkbox'), { ssr: false });
+const Slider = dynamic(() => import('antd/es/slider'), { ssr: false });
+const Tooltip = dynamic(() => import('antd/es/tooltip'), { ssr: false });
 
 const getGradientColor = (percentage) => {
     const startColor = [135, 208, 104];
@@ -14,7 +22,7 @@ const getGradientColor = (percentage) => {
     return `rgb(${midColor.join(',')})`;
 }
 
-const GeneratePassword = () => {
+export default function GeneratePassword() {
     const [password, setPassword] = useState("");
     const [length, setLength] = useState(15);
     const [checkBoxList, setCheckBoxList] = useState([
@@ -35,7 +43,7 @@ const GeneratePassword = () => {
     const [value, setValue] = useState([15, 100]);
     const start = value[0] / 100;
     const end = value[value.length - 1] / 100;
-    const updatePassword = usePasswordStore((state) => state.updatePassword);
+    // const updatePassword = usePasswordStore((state) => state.updatePassword);
 
     useEffect(() => {
         generatePassword();
@@ -57,7 +65,7 @@ const GeneratePassword = () => {
 
         let localStorageName = 'password';
         let localStoragePassword = localStorage.getItem(localStorageName);
-        !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([retVal, ...JSON.parse(localStoragePassword)])) || updatePassword([retVal, ...JSON.parse(localStoragePassword)]);
+        // !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([retVal, ...JSON.parse(localStoragePassword)])) || updatePassword([retVal, ...JSON.parse(localStoragePassword)]);
     };
 
     const copyClipboard = () => {
@@ -101,9 +109,9 @@ const GeneratePassword = () => {
                             background: 'transparent',
                         },
                         tracks: {
-                            background: `linear-gradient(to left, ${getGradientColor(start)} 0%, ${getGradientColor(
+                            background: `${`linear-gradient(to left, ${getGradientColor(start)} 0%, ${getGradientColor(
                                 end,
-                            )} 100%)`,
+                            )} 100%)`}`,
                         },
                     }}
                 />
@@ -135,5 +143,3 @@ const GeneratePassword = () => {
         </section>
     );
 }
-
-export default GeneratePassword;
