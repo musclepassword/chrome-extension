@@ -5,12 +5,12 @@
     "manifest_version": 3,
     "action": {
         "default_title": "Muscle Password",
-        "default_popup": "src/pages/index.js",
-        "default_icon": "public/lock.png"
+        "default_popup": "index.html",
+        "default_icon": "lock.png"
     },
     "icons": {
-        "16": "public/lock.png",
-        "48": "public/lock.png",
-        "128": "public/lock.png"
+        "16": "lock.png",
+        "48": "lock.png",
+        "128": "lock.png"
     }
 }
