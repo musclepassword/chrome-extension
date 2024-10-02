@@ -1,15 +1,7 @@
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-// import { usePasswordStore } from '../../../stores';
-import CopyOutlined from '@ant-design/icons/CopyOutlined';
-import CheckCircleOutlined from '@ant-design/icons/CheckCircleOutlined';
-
-// Dynamically import Button from Ant Design
-const Button = dynamic(() => import('antd/es/button'), { ssr: false });
-const Input = dynamic(() => import('antd/es/input'), { ssr: false });
-const Checkbox = dynamic(() => import('antd/es/checkbox'), { ssr: false });
-const Slider = dynamic(() => import('antd/es/slider'), { ssr: false });
-const Tooltip = dynamic(() => import('antd/es/tooltip'), { ssr: false });
+import { usePasswordStore } from '../../stores';
+import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
+import { SyncOutlined, CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
 const getGradientColor = (percentage) => {
     const startColor = [135, 208, 104];
@@ -43,7 +35,7 @@ export default function GeneratePassword() {
     const [value, setValue] = useState([15, 100]);
     const start = value[0] / 100;
     const end = value[value.length - 1] / 100;
-    // const updatePassword = usePasswordStore((state) => state.updatePassword);
+    const updatePassword = usePasswordStore((state) => state.updatePassword);
 
     useEffect(() => {
         generatePassword();

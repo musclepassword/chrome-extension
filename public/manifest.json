@@ -1,16 +1,16 @@
 {
-    "name": "Muscle Password",
-    "description": "Strong random password generator for Chrome extension",
-    "version": "1.0",
-    "manifest_version": 3,
-    "action": {
-        "default_title": "Muscle Password",
-        "default_popup": "index.html",
-        "default_icon": "lock.png"
-    },
-    "icons": {
-        "16": "lock.png",
-        "48": "lock.png",
-        "128": "lock.png"
-    }
+  "name": "Muscle Password",
+  "description": "Strong random password generator for Chrome extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+      "default_title": "Muscle Password",
+      "default_popup": "index.html",
+      "default_icon": "lock.png"
+  },
+  "icons": {
+      "16": "lock.png",
+      "48": "lock.png",
+      "128": "lock.png"
+  }
 }
