@@ -87,51 +87,53 @@ export default function GeneratePassword() {
     };
 
     return (
-        <section className="generate-password">
-            <div className="input-range">
-                <label>{'Password Length' + ': '}<b>{length}</b></label>
-                <Slider
-                    defaultValue={value}
-                    onChange={(e) => setValue(e) || generatePassword(e)}
-                    className="slider"
-                    min={3}
-                    max={50}
-                    styles={{
-                        track: {
-                            background: 'transparent',
-                        },
-                        tracks: {
-                            background: `${`linear-gradient(to left, ${getGradientColor(start)} 0%, ${getGradientColor(
-                                end,
-                            )} 100%)`}`,
-                        },
-                    }}
-                />
-            </div>
-            <div className="input-password">
-                <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
-                <Tooltip title={<span><CheckCircleOutlined />Password Copied</span>} trigger="click">
-                    <Button className="sync-button" type="primary">
-                        <CopyOutlined onClick={() => copyClipboard()} />
-                    </Button>
-                </Tooltip>
-            </div>
-            <div className="char-checkbox">
-                {checkBoxList.map((item, key) => (
-                    <Checkbox
-                        key={key}
-                        checked={item.default}
-                        onChange={(e) => {
-                            handleCheckboxChange(item.value, e.target.checked);
+        <div className="container">
+            <section className="generate-password">
+                <div className="input-range">
+                    <label>{'Password Length' + ': '}<b>{length}</b></label>
+                    <Slider
+                        defaultValue={value}
+                        onChange={(e) => setValue(e) || generatePassword(e)}
+                        className="slider"
+                        min={3}
+                        max={50}
+                        styles={{
+                            track: {
+                                background: 'transparent',
+                            },
+                            tracks: {
+                                background: `${`linear-gradient(to left, ${getGradientColor(start)} 0%, ${getGradientColor(
+                                    end,
+                                )} 100%)`}`,
+                            },
                         }}
-                    >
-                        {item.name + ' (' + item.value + ')'}
-                    </Checkbox>
-                ))}
-            </div>
-            <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
-                Generate
-            </Button>
-        </section>
+                    />
+                </div>
+                <div className="input-password">
+                    <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
+                    <Tooltip title={<span><CheckCircleOutlined />Password Copied</span>} trigger="click">
+                        <Button className="sync-button" type="primary">
+                            <CopyOutlined onClick={() => copyClipboard()} />
+                        </Button>
+                    </Tooltip>
+                </div>
+                <div className="char-checkbox">
+                    {checkBoxList.map((item, key) => (
+                        <Checkbox
+                            key={key}
+                            checked={item.default}
+                            onChange={(e) => {
+                                handleCheckboxChange(item.value, e.target.checked);
+                            }}
+                        >
+                            {item.name + ' (' + item.value + ')'}
+                        </Checkbox>
+                    ))}
+                </div>
+                <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
+                    Generate
+                </Button>
+            </section>
+        </div>
     );
 }
