@@ -93,7 +93,7 @@ export default function GeneratePassword() {
                     <label>{'Password Length' + ': '}<b>{length}</b></label>
                     <Slider
                         defaultValue={value}
-                        onChange={(e) => setValue(e) || generatePassword(e)}
+                        onChange={(e) => setValue(e) || setLength(e)}
                         className="slider"
                         min={3}
                         max={50}
@@ -111,7 +111,7 @@ export default function GeneratePassword() {
                 </div>
                 <div className="input-password">
                     <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
-                    <Tooltip title={<span><CheckCircleOutlined />Password Copied</span>} trigger="click">
+                    <Tooltip title={<span><CheckCircleOutlined /> Password Copied</span>} trigger="click">
                         <Button className="sync-button" type="primary">
                             <CopyOutlined onClick={() => copyClipboard()} />
                         </Button>
