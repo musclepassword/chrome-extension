@@ -8,7 +8,7 @@
 
 html,
 body {
-    width: 300px;
+    width: 350px;
 }
 
 a {
@@ -76,14 +76,17 @@ input:focus {
     }
 
     .input-range {
+        justify-content: space-between;
+        display: flex;
+        margin: 10px 0;
 
-        label {
-            text-align: center;
+        .slider{
+            width: 100%;
         }
 
-        input {
-            width: 520px;
-            padding: 50px 0px;
+        b{
+            margin: 5px;
+            font-size: 18px;
         }
     }
 
@@ -102,7 +105,7 @@ input:focus {
             color: #2a2a33;
             position: relative;
             width: 100%;
-            font-size: 25px;
+            font-size: 20px;
             border-radius: 15px;
             border: none;
         }
@@ -132,6 +135,5 @@ input:focus {
         justify-content: space-between;
         display: grid;
         align-items: center;
-        margin-top: 30px;
     }
 }

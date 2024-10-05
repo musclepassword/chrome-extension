@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePasswordStore } from '../../stores';
 import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
-import { SyncOutlined, CopyOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { CopyOutlined, CheckOutlined, CheckCircleOutlined, SyncOutlined } from '@ant-design/icons';
 
 const getGradientColor = (percentage) => {
     const startColor = [135, 208, 104];
@@ -17,6 +17,7 @@ const getGradientColor = (percentage) => {
 export default function GeneratePassword() {
     const [password, setPassword] = useState("");
     const [length, setLength] = useState(15);
+    const [copied, setCopied] = useState(false);
     const [checkBoxList, setCheckBoxList] = useState([
         { name: 'Uppercase', value: 'ABC', default: true, character: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' },
         { name: 'Lowercase', value: 'abc', default: true, character: 'abcdefghijklmnopqrstuvwxyz' },
@@ -62,6 +63,10 @@ export default function GeneratePassword() {
 
     const copyClipboard = () => {
         navigator.clipboard.writeText(password);
+
+        setCopied(true);
+
+        setTimeout(() => setCopied(false), 2000);
     };
 
     const handleCheckboxChange = (value, checked) => {
@@ -89,8 +94,24 @@ export default function GeneratePassword() {
     return (
         <div className="container">
             <section className="generate-password">
+                <div className="input-password">
+                    {/* <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
+                    <Tooltip title="Copy">
+                        <Button className="sync-button" type="primary" onClick={() => copyClipboard()}>
+                            {copied ? <CheckOutlined /> : <CopyOutlined />}
+                        </Button>
+                    </Tooltip> */}
+                    <Input className="input-text" type="text" variant="borderless" value={password} />
+                    <Tooltip title="Copy">
+                        <Button className="button-transparent" type="link" onClick={() => copyClipboard()}>
+                            {copied ? <CheckOutlined /> : <CopyOutlined />}
+                        </Button>
+                    </Tooltip>
+                    <Button className="sync-button" type="primary" onClick={() => generatePassword()}>
+                        <SyncOutlined />
+                    </Button>
+                </div>
                 <div className="input-range">
-                    <label>{'Password Length' + ': '}<b>{length}</b></label>
                     <Slider
                         defaultValue={value}
                         onChange={(e) => setValue(e) || setLength(e)}
@@ -108,14 +129,7 @@ export default function GeneratePassword() {
                             },
                         }}
                     />
-                </div>
-                <div className="input-password">
-                    <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
-                    <Tooltip title={<span><CheckCircleOutlined /> Password Copied</span>} trigger="click">
-                        <Button className="sync-button" type="primary">
-                            <CopyOutlined onClick={() => copyClipboard()} />
-                        </Button>
-                    </Tooltip>
+                    <b>{length}</b>
                 </div>
                 <div className="char-checkbox">
                     {checkBoxList.map((item, key) => (
@@ -133,7 +147,7 @@ export default function GeneratePassword() {
                 <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
                     Generate
                 </Button>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }
