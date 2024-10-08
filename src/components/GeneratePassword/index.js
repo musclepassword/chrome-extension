@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePasswordStore } from '../../stores';
 import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
-import { CopyOutlined, CheckOutlined, CheckCircleOutlined, SyncOutlined } from '@ant-design/icons';
+import { CopyOutlined, CheckOutlined, SyncOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const getGradientColor = (percentage) => {
     const startColor = [135, 208, 104];
@@ -18,6 +18,7 @@ export default function GeneratePassword() {
     const [password, setPassword] = useState("");
     const [length, setLength] = useState(15);
     const [copied, setCopied] = useState(false);
+    const [insert, setInsert] = useState(false);
     const [checkBoxList, setCheckBoxList] = useState([
         { name: 'Uppercase', value: 'ABC', default: true, character: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' },
         { name: 'Lowercase', value: 'abc', default: true, character: 'abcdefghijklmnopqrstuvwxyz' },
@@ -50,15 +51,11 @@ export default function GeneratePassword() {
         setLength(e ? e : length);
         let initialLength = e ? e : length;
 
-        let retVal = "";
+        let initialPassword = "";
         for (var i = 0, n = char.length; i < initialLength; ++i) {
-            retVal += char.charAt(Math.floor(Math.random() * n));
+            initialPassword += char.charAt(Math.floor(Math.random() * n));
         }
-        setPassword(retVal);
-
-        let localStorageName = 'password';
-        let localStoragePassword = localStorage.getItem(localStorageName);
-        // !localStoragePassword ? localStorage.setItem(localStorageName, '[]') : localStorage.setItem(localStorageName, JSON.stringify([retVal, ...JSON.parse(localStoragePassword)])) || updatePassword([retVal, ...JSON.parse(localStoragePassword)]);
+        setPassword(initialPassword);
     };
 
     const copyClipboard = () => {
@@ -91,20 +88,26 @@ export default function GeneratePassword() {
         setChar(updatedChar);
     };
 
+    const insertPassword = () => {
+        setInsert(true);
+        setTimeout(() => setInsert(false), 2000);
+
+        // chrome.runtime.sendMessage({ type: 'SET_PASSWORD', password: password });
+    }
+
     return (
         <div className="container">
             <section className="generate-password">
                 <div className="input-password">
-                    {/* <Input className="input-text" type="text" variant="borderless" value={password} onClick={() => copyClipboard()} />
-                    <Tooltip title="Copy">
-                        <Button className="sync-button" type="primary" onClick={() => copyClipboard()}>
-                            {copied ? <CheckOutlined /> : <CopyOutlined />}
-                        </Button>
-                    </Tooltip> */}
                     <Input className="input-text" type="text" variant="borderless" value={password} />
                     <Tooltip title="Copy">
                         <Button className="button-transparent" type="link" onClick={() => copyClipboard()}>
                             {copied ? <CheckOutlined /> : <CopyOutlined />}
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="Insert and Copy">
+                        <Button className="button-transparent" type="link" onClick={() => insertPassword()}>
+                            {insert ? <CheckOutlined /> : <ArrowRightOutlined />}
                         </Button>
                     </Tooltip>
                     <Button className="sync-button" type="primary" onClick={() => generatePassword()}>
@@ -114,10 +117,10 @@ export default function GeneratePassword() {
                 <div className="input-range">
                     <Slider
                         defaultValue={value}
-                        onChange={(e) => setValue(e) || setLength(e)}
+                        onChange={(e) => setValue(e) || generatePassword(e)}
                         className="slider"
-                        min={3}
-                        max={50}
+                        min={4}
+                        max={32}
                         styles={{
                             track: {
                                 background: 'transparent',
@@ -144,9 +147,9 @@ export default function GeneratePassword() {
                         </Checkbox>
                     ))}
                 </div>
-                <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
+                {/* <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
                     Generate
-                </Button>
+                </Button> */}
             </section >
         </div >
     );
