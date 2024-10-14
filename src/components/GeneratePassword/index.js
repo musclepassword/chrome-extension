@@ -92,8 +92,6 @@ export default function GeneratePassword() {
         setInsert(true);
         setTimeout(() => setInsert(false), 2000);
 
-        // chrome.runtime.sendMessage({ type: 'SET_PASSWORD', password: password });
-
         /* eslint-disable no-undef */
 
         chrome.runtime.sendMessage({ type: 'SET_PASSWORD', password: password });
