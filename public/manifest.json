@@ -15,11 +15,15 @@
   "action": {
     "default_title": "Muscle Password",
     "default_popup": "index.html",
-    "default_icon": "lock.png"
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
   },
   "icons": {
-    "16": "lock.png",
-    "48": "lock.png",
-    "128": "lock.png"
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
   }
 }
