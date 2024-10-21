@@ -37,7 +37,7 @@ export default function GeneratePassword() {
     const [value, setValue] = useState([15, 100]);
     const start = value[0] / 100;
     const end = value[value.length - 1] / 100;
-    const updatePassword = usePasswordStore((state) => state.updatePassword);
+    // const updatePassword = usePasswordStore((state) => state.updatePassword);
 
     useEffect(() => {
         generatePassword();
@@ -110,11 +110,14 @@ export default function GeneratePassword() {
                             {copied ? <CheckOutlined /> : <CopyOutlined />}
                         </Button>
                     </Tooltip>
-                    <Tooltip title="Insert and Copy">
-                        <Button className="button-transparent" type="link" onClick={() => insertPassword()}>
-                            {insert ? <CheckOutlined /> : <ArrowRightOutlined />}
-                        </Button>
-                    </Tooltip>
+                    {
+                        true &&
+                        <Tooltip title="Insert and Copy">
+                            <Button className="button-transparent" type="link" onClick={() => insertPassword()}>
+                                {insert ? <CheckOutlined /> : <ArrowRightOutlined />}
+                            </Button>
+                        </Tooltip>
+                    }
                     <Button className="sync-button" type="primary" onClick={() => generatePassword()}>
                         <SyncOutlined />
                     </Button>
