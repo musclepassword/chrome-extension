@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePasswordStore } from '../../stores';
-import { Button, Input, Checkbox, Slider, Tooltip } from 'antd';
+import { Button, Input, Switch, Slider, Tooltip, Space } from 'antd';
 import { CopyOutlined, CheckOutlined, SyncOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const getGradientColor = (percentage) => {
@@ -144,15 +144,16 @@ export default function GeneratePassword() {
                 </div>
                 <div className="char-checkbox">
                     {checkBoxList.map((item, key) => (
-                        <Checkbox
-                            key={key}
-                            checked={item.default}
-                            onChange={(e) => {
-                                handleCheckboxChange(item.value, e.target.checked);
-                            }}
-                        >
-                            {item.name + ' (' + item.value + ')'}
-                        </Checkbox>
+                        <div>
+                            <span>{item.name + ' (' + item.value + ')'}</span>
+                            <Switch
+                                key={key}
+                                defaultValue={item.default}
+                                onChange={(e) => {
+                                    handleCheckboxChange(item.value, e);
+                                }}
+                            />
+                        </div>
                     ))}
                 </div>
                 {/* <Button type="primary" className="copy-button" onClick={() => generatePassword()}>

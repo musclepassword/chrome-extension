@@ -51,7 +51,7 @@ input:focus {
     padding: 30px 10px;
 }
 
-.container{
+.container {
     margin: 15px;
 }
 
@@ -80,11 +80,11 @@ input:focus {
         display: flex;
         margin: 10px 0;
 
-        .slider{
+        .slider {
             width: 100%;
         }
 
-        b{
+        b {
             margin: 5px;
             font-size: 18px;
         }
@@ -122,8 +122,12 @@ input:focus {
     }
 
     .char-checkbox {
+        font-size: 20px;
+    }
+    
+    .char-checkbox div {
         justify-content: space-between;
-        display: grid;
-        align-items: center;
+        display: flex;
+        margin-bottom: 10px;
     }
 }
