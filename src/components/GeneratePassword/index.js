@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePasswordStore } from '../../stores';
-import { Button, Input, Switch, Slider, Tooltip, Space } from 'antd';
+import { Button, Input, Switch, Slider, Tooltip } from 'antd';
 import { CopyOutlined, CheckOutlined, SyncOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const getGradientColor = (percentage) => {
