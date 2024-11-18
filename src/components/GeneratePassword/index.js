@@ -1,17 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Button, Input, Switch, Slider, Tooltip } from 'antd';
 import { CopyOutlined, CheckOutlined, SyncOutlined, ArrowRightOutlined } from '@ant-design/icons';
-
-const getGradientColor = (percentage) => {
-    const startColor = [135, 208, 104];
-    const endColor = [255, 204, 199];
-    const midColor = startColor.map((start, i) => {
-        const end = endColor[i];
-        const delta = end - start;
-        return (start + delta * percentage).toFixed(0);
-    });
-    return `rgb(${midColor.join(',')})`;
-}
+import strong from '../../assets/images/strong.png';
+import weak from '../../assets/images/weak.png';
 
 export default function GeneratePassword() {
     const [password, setPassword] = useState("");
@@ -24,6 +15,7 @@ export default function GeneratePassword() {
         { name: 'Digits', value: '123', default: true, character: '0123456789' },
         { name: 'Symbols', value: '#$&', default: false, character: '!@#$%^&' },
     ]);
+    const [strength, setStrength] = useState('');
     const [char, setChar] = useState(() => {
         let initialChar = '';
         checkBoxList.map(item => {
@@ -53,6 +45,7 @@ export default function GeneratePassword() {
         for (var i = 0, n = char.length; i < initialLength; ++i) {
             initialPassword += char.charAt(Math.floor(Math.random() * n));
         }
+        evaluatePassword(initialPassword);
         setPassword(initialPassword);
     };
 
@@ -72,7 +65,22 @@ export default function GeneratePassword() {
                 }
                 return item;
             });
-            return updatedList;
+
+            // Seçili öğeleri sayıyoruz
+            const activeSelections = updatedList.filter(item => item.default).length;
+
+            if (activeSelections === 1) {
+                // Eğer yalnızca bir öğe seçili ise, diğer öğeleri disable yapıyoruz
+                return updatedList.map(item => {
+                    if (item.default === false) {
+                        return { ...item, disabled: false };  // Eğer o öğe seçili değilse, onu aktif bırak
+                    }
+                    return { ...item, disabled: true };  // Seçili öğe dışındakiler disable olur
+                });
+            } else {
+                // Eğer birden fazla öğe seçili ise, tüm öğeleri aktif yapıyoruz
+                return updatedList.map(item => ({ ...item, disabled: false }));
+            }
         });
     };
 
@@ -98,6 +106,32 @@ export default function GeneratePassword() {
 
     }
 
+    const evaluatePassword = (password) => {
+        let score = 0;
+
+        // Uzunluk
+        if (password.length >= 8) score += 1;
+        if (password.length >= 12) score += 1;
+
+        // Büyük ve küçük harf içeriyor mu?
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score += 1;
+
+        // Rakam içeriyor mu?
+        if (/\d/.test(password)) score += 1;
+
+        // Özel karakter içeriyor mu?
+        if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) score += 1;
+
+        // Gücü belirleme
+        if (score <= 1) {
+            setStrength(<div className='strength'><img src={weak} alt='weak password' />Weak password</div>);
+        } else if (score === 2) {
+            setStrength(<div className='strength'><img src={strong} alt='strong password' />Fairly strong password</div>);
+        } else if (score >= 3) {
+            setStrength(<div className='strength'><img src={strong} alt='strong password' />Strong password</div>);
+        }
+    }
+
     return (
         <div className="container">
             <section className="generate-password">
@@ -120,6 +154,7 @@ export default function GeneratePassword() {
                         <SyncOutlined />
                     </Button>
                 </div>
+                {strength}
                 <div className="input-range">
                     <Slider
                         defaultValue={value}
@@ -127,16 +162,6 @@ export default function GeneratePassword() {
                         className="slider"
                         min={4}
                         max={32}
-                        styles={{
-                            track: {
-                                background: 'transparent',
-                            },
-                            tracks: {
-                                background: `${`linear-gradient(to left, ${getGradientColor(start)} 0%, ${getGradientColor(
-                                    end,
-                                )} 100%)`}`,
-                            },
-                        }}
                     />
                     <b>{length}</b>
                 </div>
@@ -147,6 +172,7 @@ export default function GeneratePassword() {
                             <Switch
                                 key={key}
                                 defaultValue={item.default}
+                                disabled={item.disabled}
                                 onChange={(e) => {
                                     handleCheckboxChange(item.value, e);
                                 }}
