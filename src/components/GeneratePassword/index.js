@@ -154,9 +154,9 @@ export default function GeneratePassword() {
                         </div>
                     ))}
                 </div>
-                {/* <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
+                <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
                     Generate
-                </Button> */}
+                </Button>
             </section >
         </div >
     );
