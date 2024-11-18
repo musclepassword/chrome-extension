@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { usePasswordStore } from '../../stores';
 import { Button, Input, Switch, Slider, Tooltip } from 'antd';
 import { CopyOutlined, CheckOutlined, SyncOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
@@ -37,7 +36,6 @@ export default function GeneratePassword() {
     const [value, setValue] = useState([15, 100]);
     const start = value[0] / 100;
     const end = value[value.length - 1] / 100;
-    // const updatePassword = usePasswordStore((state) => state.updatePassword);
 
     useEffect(() => {
         generatePassword();
