@@ -21,8 +21,10 @@ a {
 }
 
 h1 {
-    font-size: 19px;
-    padding-bottom: 50px;
+    padding-top: 8px;
+    font-size: 13px;
+    font-weight: 300;
+    color: #939393;
 }
 
 h2 {
@@ -35,24 +37,37 @@ h3 {
     font-weight: 600;
 }
 
-header {
-    color: #1d1d22;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    padding: 30px;
-}
-
 input:focus {
     outline: none;
 }
 
-.tabs {
-    padding: 30px 10px;
-}
-
 .container {
     margin: 15px;
+}
+
+header {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+
+    .logo {
+        h1{
+            span{
+                font-weight: bold;
+            }
+        }
+        img {
+            width: 50px;
+        }
+
+        span {
+            position: fixed;
+        }
+    }
+
+    button svg{
+        font-size: 19px;
+    }
 }
 
 .generate-password {
@@ -105,7 +120,7 @@ input:focus {
             color: #2a2a33;
             position: relative;
             width: 100%;
-            font-size: 20px;
+            font-size: 19px;
             border-radius: 15px;
             border: none;
         }
@@ -122,12 +137,23 @@ input:focus {
     }
 
     .char-checkbox {
-        font-size: 20px;
+        font-size: 18px;
     }
-    
+
     .char-checkbox div {
         justify-content: space-between;
         display: flex;
         margin-bottom: 10px;
+    }
+
+    .strength {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin-top: 20px;
+
+        img {
+            margin-right: 5px;
+        }
     }
 }
