@@ -19,3 +19,8 @@ After installing the extension, you will see the Muscle Password icon on your br
 
 ### Contribute
 You can star the repo to contribute.
+
+### Version & Active User Count
+![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/iimjcckbcjoehbfekigjpnlgmjllmgdk?logo=google-chrome&logoColor=white&label=%20&color=47A4F4)
+
+![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/iimjcckbcjoehbfekigjpnlgmjllmgdk?color=47A4F4)
