@@ -183,7 +183,7 @@ export default function GeneratePassword() {
                 <Button type="primary" className="copy-button" onClick={() => generatePassword()}>
                     Generate
                 </Button>
-            </section >
+            </section>
         </div >
     );
 }
