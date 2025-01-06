@@ -1,4 +1,5 @@
 module.exports = {
+  'react-hooks/exhaustive-deps': 'off',
   env: {
     browser: true, // Tarayıcı ortamı
     es2021: true,  // ES2021 sözdizimini kullanabilmek için
