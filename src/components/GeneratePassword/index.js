@@ -17,24 +17,24 @@ export default function GeneratePassword() {
     ]);
     const [strength, setStrength] = useState('');
     const [char, setChar] = useState(() => {
-        let initialChar = '';
-        checkBoxList.map(item => {
-            if (item.default) {
-                initialChar += item.character;
-            }
-        });
-        return initialChar;
+        return checkBoxList
+            .filter(item => item.default)  // default true olanları filtrele
+            .map(item => item.character)   // karakterleri al
+            .join('');                    // karakterleri birleştir
     });
     const [value, setValue] = useState([15, 100]);
-    const start = value[0] / 100;
-    const end = value[value.length - 1] / 100;
 
     useEffect(() => {
         generatePassword();
     }, []);
 
     useEffect(() => {
-        charChange();
+        // checkBoxList her değiştiğinde char'ı güncelle
+        const updatedChar = checkBoxList
+            .filter(item => item.default)
+            .map(item => item.character)
+            .join('');
+        setChar(updatedChar);
     }, [checkBoxList]);
 
     const generatePassword = (e) => {
@@ -82,16 +82,6 @@ export default function GeneratePassword() {
                 return updatedList.map(item => ({ ...item, disabled: false }));
             }
         });
-    };
-
-    const charChange = () => {
-        let updatedChar = '';
-        checkBoxList.map(item => {
-            if (item.default) {
-                updatedChar += item.character;
-            }
-        });
-        setChar(updatedChar);
     };
 
     const insertPassword = () => {
