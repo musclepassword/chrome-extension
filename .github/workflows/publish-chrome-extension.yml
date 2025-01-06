@@ -28,12 +28,12 @@ jobs:
       # 4. Build the extension (optional, depends on your setup)
       - name: Build extension
         run: |
-          npm run build  # Eğer bir build süreci varsa
+          CI=false npm run build  # Eğer bir build süreci varsa
 
       # 5. Package the extension as a zip file
       - name: Package extension
         run: |
-          zip -r extension.zip ./dist  # dist klasöründeki dosyaları zip'ler
+          zip -r extension.zip ./build  # build klasöründeki dosyaları zip'ler
 
       # 6. Upload extension to Chrome Web Store (using chrome-webstore-upload-cli)
       - name: Upload extension to Chrome Web Store
