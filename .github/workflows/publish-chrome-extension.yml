@@ -1,0 +1,46 @@
+name: Publish Chrome Extension
+
+on:
+  push:
+    branches:
+      - main  # Bu, main branch'e push yapıldığında tetiklenmesini sağlar.
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code from repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Setup Node.js (If your extension is built with Node.js, otherwise skip this step)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # 3. Install dependencies (If needed, for example for React or other build tools)
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # 4. Build the extension (optional, depends on your setup)
+      - name: Build extension
+        run: |
+          npm run build  # Eğer bir build süreci varsa
+
+      # 5. Package the extension as a zip file
+      - name: Package extension
+        run: |
+          zip -r extension.zip ./dist  # dist klasöründeki dosyaları zip'ler
+
+      # 6. Upload extension to Chrome Web Store (using chrome-webstore-upload-cli)
+      - name: Upload extension to Chrome Web Store
+        env:
+          CLIENT_ID: ${{ secrets.CHROME_WEBSTORE_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CHROME_WEBSTORE_CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.CHROME_WEBSTORE_REFRESH_TOKEN }}
+        run: |
+          npm install -g chrome-webstore-upload-cli
+          chrome-webstore-upload-cli --client-id $CLIENT_ID --client-secret $CLIENT_SECRET --refresh-token $REFRESH_TOKEN --extension-id your-extension-id --zip ./extension.zip
