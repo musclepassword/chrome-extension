@@ -3,7 +3,7 @@ name: Publish Chrome Extension
 on:
   push:
     branches:
-      - main  # Bu, main branch'e push yapıldığında tetiklenmesini sağlar.
+      - main
 
 jobs:
   build_and_publish:
@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
       # 3. Install dependencies (If needed, for example for React or other build tools)
       - name: Install dependencies
@@ -28,7 +28,7 @@ jobs:
       # 4. Build the extension (optional, depends on your setup)
       - name: Build extension
         run: |
-          CI=false npm run build  # Eğer bir build süreci varsa
+          CI=false npm run build
 
       # 5. Package the extension as a zip file
       - name: Package extension
