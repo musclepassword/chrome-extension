@@ -1,4 +1,4 @@
-import { Flex, Layout, Typography, Tooltip, Switch } from 'antd';
+import { Flex, Layout, Typography, Tooltip, Switch, Button } from 'antd';
 import { SunOutlined, MoonOutlined } from '@ant-design/icons';
 import logo from '../../assets/images/logo.png';
 import { useTheme } from '../../theme';
@@ -25,19 +25,21 @@ const GlobalHeader = () => {
         <Header style={headerStyle}>
             <Flex align="center" justify="space-between" style={{ height: '100%' }}>
                 <Flex align="center">
-                    <img 
-                        alt="Muscle Password Logo" 
-                        src={logo} 
-                        style={{ 
-                            width: 50,
-                            height: 50,
-                            objectFit: 'contain'
-                        }} 
-                    />
+                    <Button href="http://musclepassword.com" type="link" target="_blank" style={{ padding: 0 }}>
+                        <img
+                            alt="Muscle Password Logo"
+                            src={logo}
+                            style={{
+                                width: 50,
+                                height: 50,
+                                objectFit: 'contain'
+                            }}
+                        />
+                    </Button>
                     <Flex vertical style={{ lineHeight: '1.2' }}>
-                        <Title 
-                            level={5} 
-                            style={{ 
+                        <Title
+                            level={5}
+                            style={{
                                 ...textStyle,
                                 fontSize: '14px',
                                 fontWeight: '900'
@@ -45,9 +47,9 @@ const GlobalHeader = () => {
                         >
                             MUSCLE
                         </Title>
-                        <Title 
-                            level={6} 
-                            style={{ 
+                        <Title
+                            level={6}
+                            style={{
                                 ...textStyle,
                                 fontSize: '13px',
                                 fontWeight: '500'

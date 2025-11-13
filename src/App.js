@@ -2,7 +2,6 @@ import GlobalHeader from './components/GlobalHeader';
 import GeneratePassword from './components/GeneratePassword';
 import { ConfigProvider, theme } from 'antd';
 import { ThemeProvider, useTheme } from './theme';
-import GlobalFooter from './components/GlobalFooter';
 
 function ThemedApp() {
   const { isDarkMode } = useTheme();
@@ -19,7 +18,6 @@ function ThemedApp() {
     >
       <GlobalHeader />
       <GeneratePassword />
-      <GlobalFooter />
     </ConfigProvider>
   );
 }

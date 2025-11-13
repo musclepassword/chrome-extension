@@ -17,8 +17,8 @@ import {
     ArrowRightOutlined
 } from '@ant-design/icons';
 import { useTheme } from '../../theme';
-import strong from '../../assets/images/strong.svg';
-import weak from '../../assets/images/weak.svg';
+import strong from '../../assets/images/security.png';
+import weak from '../../assets/images/unprotected.png';
 
 export default function GeneratePassword() {
     const { isDarkMode } = useTheme();
@@ -284,8 +284,8 @@ export default function GeneratePassword() {
                 <img
                     src={passwordState.strengthIcon}
                     style={{
-                        width: '24px',
-                        height: '24px',
+                        width: '18px',
+                        height: '18px',
                         filter: passwordState.strengthFilter
                     }}
                     alt={passwordState.strength}
