@@ -11,7 +11,7 @@ const GlobalHeader = () => {
 
     const headerStyle = {
         background: isDarkMode ? '#141414' : '#fff',
-        padding: '0 24px',
+        padding: '24px 24px 0 24px',
         height: '64px',
         lineHeight: '64px'
     };
